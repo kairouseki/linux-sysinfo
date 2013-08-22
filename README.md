@@ -1,4 +1,4 @@
 linux-sysinfo
 =============
 
-Displays system informations at login
+Displays system informations at login for Debian based distros.
