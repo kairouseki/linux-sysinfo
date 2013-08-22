@@ -1,8 +1,5 @@
 #! /bin/sh
-if [[ $UID -ne 0 ]]; then
-    echo "$0 must be run as root"
-    exit 1
-fi
+uid=$(/usr/bin/id -u) && [ "$uid" = "0" ] || { echo "must be root"; exit 1; }
 apt-get install figlet python
 mkdir -p /etc/update-motd.d/
 cp sh_scripts/* /etc/update-motd.d/
