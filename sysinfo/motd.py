@@ -5,11 +5,11 @@ import executil
 from sysversion import fmt_sysversion
 
 def fmt_welcome():
-    welcome = "Welcome to %s" % socket.gethostname().capitalize()
-    noyau = executil.getoutput("uname -mr")
+    welcome = "Welcome to %s" % socket.gethostname()
+    kernel = executil.getoutput("uname -mr")
     sysversion = fmt_sysversion()
     if sysversion:
-        welcome += ", " + sysversion + " (" + noyau + ")"
+        welcome += ", " + sysversion + " (" + kernel + ")"
 
     return welcome
 
@@ -30,4 +30,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

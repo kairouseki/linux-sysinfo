@@ -11,10 +11,18 @@ import os
 import re
 import executil
 
+"""
+	Return a formatted distribution string:
+    e.g. : Debian 7.1 Wheezy
+    
+    Output by lsb_release tool :
+    
+	Distributor ID:	Debian
+	Description:	Debian GNU/Linux 7.1 (wheezy)
+	Release:		7.1
+	Codename:		wheezy
+"""
 def fmt_base_distribution():
-    """Return a formatted distribution string:
-        e.g., Debian 7.1 Wheezy"""
-
     try:
         output = executil.getoutput("lsb_release -ircd")
     except executil.ExecError:
@@ -24,10 +32,12 @@ def fmt_base_distribution():
                for line in output.splitlines() ])
 
     codename = d['Codename'].capitalize()
-    basedist = "%s %s %s" % (d['Distributor ID'],
-                             d['Release'],
-                             d['Codename'].capitalize())
-    if d['Codename'] in ('hardy', 'lucid'):
+    basedist = "%s %s %s" % (
+    						d['Distributor ID'],
+                            d['Release'],
+                            d['Codename'].capitalize()
+                            )
+    if d['Codename'] in ('hardy', 'lucid', 'precise'):
         basedist += " LTS"
 
     return basedist
