@@ -1,6 +1,6 @@
 #! /bin/sh
 uid=$(/usr/bin/id -u) && [ "$uid" = "0" ] || { echo "must be root"; exit 1; }
-apt-get install figlet python
+apt-get install figlet python lsb-release
 mkdir -p /etc/update-motd.d/
 cp sh_scripts/* /etc/update-motd.d/
 chmod a+x /etc/update-motd.d/*
