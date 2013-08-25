@@ -25,12 +25,12 @@ touch /etc/motd
 # setup for Debian 7
 if [ -f /var/run/motd.dynamic ]
 then
-	rm /var/run/motd.dynamic
+	mv /var/run/motd.dynamic /var/run/motd.dynamic.old
 	touch /var/run/motd.dynamic
 	echo "session    optional   pam_motd.so  motd=/var/run/motd" >> /etc/pam.d/login
 	echo "session    optional   pam_motd.so  motd=/var/run/motd" >> /etc/pam.d/sshd
 fi
 if [ -f /etc/init.d/motd ]
 then
-	
+	sed -i 's/uname -sn/#uname -sn/g' /etc/init.d/motd
 fi
