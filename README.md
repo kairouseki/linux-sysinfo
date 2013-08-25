@@ -4,6 +4,7 @@ linux-sysinfo
 Displays system informations at login for Debian based distros (only Debian 7.1 for now).
 
 Example :
+<pre><code>
                    _      _     _            _____ _
                 __| | ___| |__ (_) __ _ _ __|___  / |
                / _` |/ _ \ '_ \| |/ _` | '_ \  / /| |
@@ -19,4 +20,4 @@ Example :
     Usage of /:   14.8% of 7.50GB   IP address for eth0:  10.0.2.15
                                     IP address for eth0:1:  127.0.0.2
                                     IP address for eth1:  192.168.56.106
-
+</code></pre>
