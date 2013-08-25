@@ -31,16 +31,22 @@ IFF_DYNAMIC = 0x8000L  # addr's lost on inet down
 IFF_LOWER_UP = 0x10000 # has netif_dormant_on()
 IFF_DORMANT = 0x20000  # has netif_carrier_on()
 
+# /sbin/ifconfig -a | grep "Link encap" | awk '{print $1}' | grep ':'
+# output = executil.getoutput("/sbin/ifconfig -a | grep "Link encap" | awk '{print $1}' | grep ':'")
 def get_ifnames():
     """ returns list of interface names (up and down) """
     ifnames = []
-    for line in file('/proc/net/dev').readlines():
+    try:
+    	infos = executil.getoutput("/sbin/ifconfig -a | grep "Link encap" | awk '{print $1}'")
+    except  executil.ExecError:
+        return None
+   
+	for line in infos.splitlines():
         try:
-            ifname, junk = line.strip().split(":")
+            ifname = line.strip()
             ifnames.append(ifname)
         except ValueError:
             pass
-
     return ifnames
 
 class Error(Exception):
